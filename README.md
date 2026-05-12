@@ -3,8 +3,7 @@
 Projet réalisé dans le cadre du module **Graphes et OpenData** — Licence MIAGE, Université Paris Nanterre (2025–2026).
  
 **Auteurs :** Kenza CHANAZ & Fatoumata DEMBELE  
-**Application interactive :** [https://diabgraphe.streamlit.app/](https://diabgraphe.streamlit.app/)  
-**Dataset :** [Diabetes Health Indicators Dataset — Kaggle](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset)
+
  
 ---
  
