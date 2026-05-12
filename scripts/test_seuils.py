@@ -5,9 +5,14 @@ import networkx.algorithms.community as nx_comm
 import matplotlib.pyplot as plt
 import os
 
-os.makedirs("../outputs/figures", exist_ok=True)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+FIG_DIR  = os.path.join(OUT_DIR, 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
 
-similarite = np.load("../outputs/similarite_matrix.npy")
+
+
+similarite = np.load(os.path.join(OUT_DIR, 'similarite_matrix.npy'))
 
 idx_upper = np.triu_indices(len(similarite), k=1)
 vals_all  = similarite[idx_upper]
@@ -80,14 +85,14 @@ fig.suptitle(
     color="white", fontsize=13, fontweight="bold", y=1.02
 )
 plt.tight_layout()
-plt.savefig("../outputs/figures/comparaison_seuils.png", dpi=90, bbox_inches="tight", facecolor=fig.get_facecolor())
+plt.savefig(os.path.join(FIG_DIR, 'comparaison_seuils.png'), dpi=90, bbox_inches="tight", facecolor=fig.get_facecolor())
 plt.close()
 
 PALETTE = {
     0: "#E24B4A", 1: "#E09020", 2: "#185FA5", 3: "#0F6E56",
 }
 
-df_part = pd.read_csv("../outputs/partition.csv")
+df_part    = pd.read_csv(os.path.join(OUT_DIR, 'partition.csv'))
 partition_base = dict(zip(df_part["patient_idx"], df_part["communaute"]))
 
 fig3, axes3 = plt.subplots(1, 3, figsize=(21, 7))
@@ -125,5 +130,5 @@ fig3.suptitle(
     color="white", fontsize=13, fontweight="bold"
 )
 plt.tight_layout()
-plt.savefig("../outputs/figures/graphes_seuils_compares.png", dpi=90, bbox_inches="tight", facecolor=fig3.get_facecolor())
+plt.savefig(os.path.join(FIG_DIR, 'graphes_seuils_compares.png'), dpi=90, bbox_inches="tight", facecolor=fig3.get_facecolor())
 plt.close()

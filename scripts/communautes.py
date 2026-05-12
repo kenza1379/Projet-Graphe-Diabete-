@@ -6,11 +6,14 @@ import networkx as nx
 import networkx.algorithms.community as nx_comm
 
 warnings.filterwarnings('ignore')
-os.makedirs("../outputs", exist_ok=True)
 
-# Données
-df_raw  = pd.read_csv("../data/diabetes_data_cleaned.csv")
-df_norm = pd.read_csv("../data/diabetes_data_normalized.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+os.makedirs(OUT_DIR, exist_ok=True)
+
+df_raw  = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_cleaned.csv'))
+df_norm = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_normalized.csv'))
 
 COLS  = ['Age', 'BMI', 'FastingBloodSugar', 'HbA1c', 'SystolicBP', 'CholesterolTotal', 'SleepQuality']
 POIDS = np.array([0.10, 0.15, 0.25, 0.25, 0.15, 0.05, 0.05])
@@ -20,7 +23,7 @@ labels = df_raw['Diagnosis'].values
 n      = len(X)
 
 # Matrice de similarité (distance euclidienne pondérée : sim = 1 / (1 + d))
-matrix_path = "../outputs/similarite_matrix.npy"
+matrix_path = os.path.join(OUT_DIR, 'similarite_matrix.npy')
 
 if os.path.exists(matrix_path):
     similarite = np.load(matrix_path)
@@ -96,12 +99,12 @@ for comm_id, comm_set in enumerate(communities):
 profils_df = pd.DataFrame(profils).sort_values('taux_diabete_%', ascending=False)
 
 # Sauvegarde
-profils_df.to_csv("../outputs/profils.csv", index=False, encoding='utf-8')
+profils_df.to_csv(os.path.join(OUT_DIR, 'profils.csv'), index=False, encoding='utf-8')
 
 pd.DataFrame({
     'patient_idx': range(n),
     'communaute':  [partition.get(i, -1) for i in range(n)],
     'diagnosis':   labels,
-}).to_csv("../outputs/partition.csv", index=False, encoding='utf-8')
+}).to_csv(os.path.join(OUT_DIR, 'partition.csv'), index=False, encoding='utf-8')
 
 print("Fichiers sauvegardés : outputs/profils.csv · outputs/partition.csv")

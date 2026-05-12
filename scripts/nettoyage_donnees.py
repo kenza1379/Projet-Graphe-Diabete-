@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+FIG_DIR  = os.path.join(BASE_DIR, '..', 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
 
-
-fichier = 'diabetes_data.csv'  
+fichier = os.path.join(DATA_DIR, 'diabetes_data.csv')
 df = pd.read_csv(fichier)
 
 # VALEURS MANQUANTES ET DOUBLONS
@@ -49,14 +53,10 @@ lignes_apres = len(df_clean)
 
 # SAUVEGARDE
 
-fichier_nettoye = 'diabetes_data_cleaned.csv'
+fichier_nettoye = os.path.join(DATA_DIR, 'diabetes_data_cleaned.csv')
 df_clean.to_csv(fichier_nettoye, index=False)
 
 # VISUALISATIONS 
-
-import os
-if not os.path.exists('figures'):
-    os.makedirs('figures')
 
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
@@ -78,7 +78,7 @@ if 'Age' in df_clean.columns:
     axes[1].grid(axis='y', alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('figures/nettoyage_resume.png', dpi=300, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'nettoyage_resume.png'), dpi=300, bbox_inches='tight')
 
 plt.close()
 

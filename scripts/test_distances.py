@@ -7,8 +7,14 @@ from scipy.spatial.distance import cdist
 import networkx as nx
 import os
 
-df_norm = pd.read_csv("../data/diabetes_data_normalized.csv")
-df_raw  = pd.read_csv("../data/diabetes_data_cleaned.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+FIG_DIR  = os.path.join(OUT_DIR, 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
+
+df_norm = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_normalized.csv'))
+df_raw  = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_cleaned.csv'))
 
 COLS_PROJET = [
     'Age', 'BMI', 'FastingBloodSugar', 'HbA1c',
@@ -18,7 +24,7 @@ POIDS = np.array([0.10, 0.15, 0.25, 0.25, 0.15, 0.05, 0.05])
 
 X = df_norm.values
 
-os.makedirs("../outputs/figures", exist_ok=True)
+
 
 N_TEST = 50
 X_test      = X[:N_TEST]
@@ -88,7 +94,7 @@ for k, (nom, mat, cmap) in enumerate(zip(noms, matrices, ['Greens', 'Blues', 'Or
 
 fig.suptitle("Comparaison des métriques de distance — Similarité entre patients",
              fontsize=14, fontweight='bold', y=1.02)
-plt.savefig("../outputs/figures/comparaison_distances.png", dpi=90, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'comparaison_distances.png'), dpi=90, bbox_inches='tight')
 plt.close()
 
 r_em = np.corrcoef(vals_euc, vals_man)[0, 1]
@@ -123,5 +129,5 @@ ax.set_title("Graphe prototype — 100 patients (seuil P75, distance Euclidienne
              fontsize=11, fontweight='bold')
 ax.axis('off')
 plt.tight_layout()
-plt.savefig("../outputs/figures/graphe_prototype.png", dpi=90, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'graphe_prototype.png'), dpi=90, bbox_inches='tight')
 plt.close()

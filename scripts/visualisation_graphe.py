@@ -4,14 +4,20 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 import random
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+FIG_DIR  = os.path.join(OUT_DIR, 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
 
 random.seed(42)
 np.random.seed(42)
 
-PATH_GML       = "../outputs/graphe.gml"
-PATH_PARTITION = "../outputs/partition.csv"
-PATH_OUT_1     = "../outputs/figures/graphe_sous_ensemble.png"
-PATH_OUT_2     = "../outputs/figures/graphe_complet_p95.png"
+PATH_GML       = os.path.join(OUT_DIR, 'graphe.gml')
+PATH_PARTITION = os.path.join(OUT_DIR, 'partition.csv')
+PATH_OUT_1     = os.path.join(FIG_DIR, 'graphe_sous_ensemble.png')
+PATH_OUT_2     = os.path.join(FIG_DIR, 'graphe_complet_p95.png')
 
 PALETTE = {
     3: "#E24B4A",

@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 COLS = ['Age', 'BMI', 'FastingBloodSugar', 'HbA1c',
@@ -8,9 +11,9 @@ COLS = ['Age', 'BMI', 'FastingBloodSugar', 'HbA1c',
 POIDS = np.array([0.10, 0.15, 0.25, 0.25, 0.15, 0.05, 0.05])
 
 
-PATH_NORM      = "../data/diabetes_data_normalized.csv"
-PATH_RAW       = "../data/diabetes_data_cleaned.csv"
-PATH_PARTITION = "../outputs/partition.csv"
+PATH_NORM      = os.path.join(BASE_DIR, '..', 'data', 'diabetes_data_normalized.csv')
+PATH_RAW       = os.path.join(BASE_DIR, '..', 'data', 'diabetes_data_cleaned.csv')
+PATH_PARTITION = os.path.join(BASE_DIR, '..', 'outputs', 'partition.csv')
 
 
 NOMS = {
@@ -90,7 +93,7 @@ for c, z in zip(COLS, vals_normees):
     print(f"    {c:<22} : {z:+.3f}")
 
 
-print("\n  ⏳ Calcul de la similarité avec les 1879 patients...")
+print("\n  Calcul de la similarité avec les 1879 patients...")
 
 sqrt_poids = np.sqrt(POIDS)
 x_new_w    = vals_normees * sqrt_poids               

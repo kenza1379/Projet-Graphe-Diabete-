@@ -3,9 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from scipy import stats
+import seaborn as sns
 import os
 
-df = pd.read_csv("../data/diabetes_data_cleaned.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+FIG_DIR  = os.path.join(BASE_DIR, '..', 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
+
+df = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_cleaned.csv'))
 
 COLS_PROJET = [
     'Age', 'BMI', 'FastingBloodSugar', 'HbA1c',
@@ -21,9 +27,6 @@ POIDS = {
     'CholesterolTotal': 0.05,
     'SleepQuality': 0.05
 }
-
-os.makedirs("figures", exist_ok=True)
-
 
 
 # STAT DESCRIPTIVES AVANCÉES
@@ -58,7 +61,7 @@ ax.set_title("Matrice de corrélation — 7 variables cliniques + Diagnostic",
 plt.xticks(rotation=30, ha='right', fontsize=9)
 plt.yticks(rotation=0, fontsize=9)
 plt.tight_layout()
-plt.savefig("figures/correlation_heatmap.png", dpi=100, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'correlation_heatmap.png'), dpi=100, bbox_inches='tight')
 plt.close()
 
 # ANALYSE DE LA VARIANCE (AVEC ANOVA)
@@ -113,7 +116,7 @@ for idx, col in enumerate(COLS_PROJET[:6]):
 
 fig.suptitle("Distributions par groupe diagnostic — 6 variables cliniques",
              fontsize=13, fontweight='bold', y=1.01)
-plt.savefig("figures/distributions_par_groupe.png", dpi=90, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'distributions_par_groupe.png'), dpi=90, bbox_inches='tight')
 plt.close()
 
 
@@ -131,7 +134,7 @@ for ax, col in zip(axes, COLS_PROJET):
 
 fig.suptitle("Boxplots par groupe diagnostic", fontsize=12, fontweight='bold')
 plt.tight_layout()
-plt.savefig("figures/boxplots_diagnostic.png", dpi=90, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'boxplots_diagnostic.png'), dpi=90, bbox_inches='tight')
 plt.close()
 
 

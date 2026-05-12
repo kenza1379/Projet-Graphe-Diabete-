@@ -1,5 +1,5 @@
 communaute,taille,taux_diabete_%,profil,moy_Age,std_Age,moy_BMI,std_BMI,moy_FastingBloodSugar,std_FastingBloodSugar,moy_HbA1c,std_HbA1c,moy_SystolicBP,std_SystolicBP,moy_CholesterolTotal,std_CholesterolTotal,moy_SleepQuality,std_SleepQuality
-0,519,94.4,Prévalence diabétique très élevée — hyperglycémie élevée,54.064,20.573,27.814,7.171,167.986,18.486,8.331,0.903,133.008,25.814,225.12,42.368,6.979,1.702
-1,513,25.3,Risque métabolique modéré,56.942,20.919,26.964,7.192,101.967,18.611,8.343,0.949,132.745,25.181,224.643,44.296,7.047,1.722
-3,472,21.4,Risque métabolique modéré — hyperglycémie élevée,54.186,20.311,26.845,7.065,163.435,19.997,5.287,0.808,134.898,25.595,225.595,44.414,7.089,1.751
+0,519,94.4,Diabétique sévère,54.064,20.573,27.814,7.171,167.986,18.486,8.331,0.903,133.008,25.814,225.12,42.368,6.979,1.702
+1,513,25.3,Hyperglycémie isolée,56.942,20.919,26.964,7.192,101.967,18.611,8.343,0.949,132.745,25.181,224.643,44.296,7.047,1.722
+3,472,21.4,Hyperglycémie isolée,54.186,20.311,26.845,7.065,163.435,19.997,5.287,0.808,134.898,25.595,225.595,44.414,7.089,1.751
 2,375,8.3,Faible prévalence diabétique,54.88,20.035,29.563,7.043,99.771,18.573,5.356,0.814,136.213,25.864,224.606,42.267,6.96,1.753

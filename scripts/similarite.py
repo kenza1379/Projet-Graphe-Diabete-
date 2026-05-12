@@ -4,9 +4,16 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import os, time
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+FIG_DIR  = os.path.join(BASE_DIR, '..', 'figures')
+os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(FIG_DIR, exist_ok=True)
 
-df_norm = pd.read_csv("../data/diabetes_data_normalized.csv")
-df_raw  = pd.read_csv("d../data/diabetes_data_cleaned.csv")
+df_norm = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_normalized.csv'))
+df_raw  = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_cleaned.csv'))
+
 
 COLS_PROJET = [
     'Age', 'BMI', 'FastingBloodSugar', 'HbA1c',
@@ -139,8 +146,8 @@ ax4.tick_params(axis='x', labelsize=6)
 ax4.grid(axis='y', alpha=0.3)
 
 fig.suptitle("Analyse de la Matrice de Similarité Pondérée — Kenza", fontsize=13, fontweight='bold')
-plt.savefig("figures/similarite_analyse.png", dpi=90, bbox_inches='tight')
+plt.savefig(os.path.join(FIG_DIR, 'similarite_analyse.png'), dpi=90, bbox_inches='tight')
 plt.close()
 
-np.save("outputs/similarite_matrix.npy", similarite)
+np.save(os.path.join(OUT_DIR, 'similarite_matrix.npy'), similarite)
 

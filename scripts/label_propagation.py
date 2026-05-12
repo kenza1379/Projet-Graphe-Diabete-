@@ -8,13 +8,17 @@ import matplotlib.patches as mpatches
 import time
 import os
 
-os.makedirs("../outputs/figures", exist_ok=True)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+FIG_DIR  = os.path.join(OUT_DIR, 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
 
 
 
-similarite   = np.load("../outputs/similarite_matrix.npy")
-partition_df = pd.read_csv("../outputs/partition.csv")
-df_raw       = pd.read_csv("../data/diabetes_data_cleaned.csv")
+similarite   = np.load(os.path.join(OUT_DIR, 'similarite_matrix.npy'))
+partition_df = pd.read_csv(os.path.join(OUT_DIR, 'partition.csv'))
+df_raw       = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_cleaned.csv'))
 
 
 
@@ -224,6 +228,6 @@ fig.text(
 )
 
 plt.tight_layout(rect=[0, 0.03, 1, 0.97])
-plt.savefig("../outputs/figures/comparaison_algorithmes.png",
+plt.savefig(os.path.join(FIG_DIR, 'comparaison_algorithmes.png'),
             dpi=90, bbox_inches="tight", facecolor=fig.get_facecolor())
 plt.close()

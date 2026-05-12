@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
+
 df = pd.read_csv("../data/diabetes_data_cleaned.csv")
 
 cols_projet = [

@@ -3,10 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from matplotlib.gridspec import GridSpec
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+FIG_DIR  = os.path.join(OUT_DIR, 'figures')
+os.makedirs(FIG_DIR, exist_ok=True)
 
 # CHEMINS
-PATH_PROFILS = "../outputs/profils.csv"
-PATH_OUT     = "../outputs/figures/heatmap_profils_communautes.png"
+PATH_PROFILS = os.path.join(OUT_DIR, 'profils.csv')
+PATH_OUT     = os.path.join(FIG_DIR, 'heatmap_profils_communautes.png')
 
 # NOMS ET COULEURS DES COMMU
 NOMS = {

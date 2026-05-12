@@ -2,8 +2,14 @@ import pandas as pd
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
+import os
 
-df = pd.read_csv("../data/diabetes_data_normalized.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, '..', 'data')
+OUT_DIR  = os.path.join(BASE_DIR, '..', 'outputs')
+os.makedirs(OUT_DIR, exist_ok=True)
+
+df = pd.read_csv(os.path.join(DATA_DIR, 'diabetes_data_normalized.csv'))
 
 poids = np.array([0.10, 0.15, 0.25, 0.25, 0.15, 0.05, 0.05])
 X = df.values
@@ -36,4 +42,4 @@ nx.draw_networkx_edges(G, pos, alpha=0.05, width=0.5)
 plt.title("Graphe de similarité — 1879 patients", fontsize=14)
 plt.axis("off")
 plt.tight_layout()
-plt.savefig("../outputs/visualisation.png", dpi=150)
+plt.savefig(os.path.join(OUT_DIR, 'visualisation.png'), dpi=150)
