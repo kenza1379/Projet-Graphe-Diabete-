@@ -1,0 +1,36 @@
+RAPPORT DE DÉTECTION DE COMMUNAUTÉS
+====================================
+Projet : Graphe de Similarité - Patients Diabétiques
+Réalisé par : Kenza — Semaine 2
+
+GRAPHE
+------
+Nœuds          : 1,879
+Arêtes         : 441,096
+Densité        : 0.2500
+Degré moyen    : 469.5
+Seuil P75      : 0.4740
+
+LOUVAIN (résolution=1.0, seed=42)
+----------------------------------
+Communautés détectées    : 4
+Modularité Q             : 0.3067
+Modularité moy (5 runs)  : 0.3063 ± 0.0007
+Nb comm. moy (5 runs)    : 3.8 ± 0.4
+
+PROFILS PAR COMMUNAUTÉ
+-----------------------
+ communaute  taille  taux_diabete_%                                      profil  moy_FastingBloodSugar  moy_HbA1c  moy_BMI  moy_Age
+          3     525            94.5 Diabète déclaré — profil métabolique sévère                167.551      8.334   27.864   54.032
+          1     506            24.7    Hyperglycémie isolée — sans complication                101.733      8.344   26.843   57.160
+          0     467            21.6    Hyperglycémie isolée — sans complication                163.788      5.285   26.810   54.270
+          2     381             7.9     Profil sain — faible risque métabolique                100.050      5.361   29.642   54.572
+
+CONCLUSION
+----------
+→ 1 communauté(s) Diabète déclaré — profil sévère (taux ≥ 70%)
+→ 0 communauté(s) Profil à risque — prédiabète (40–70%)
+→ 2 communauté(s) Hyperglycémie isolée (20–40%)
+→ 1 communauté(s) Profil sain — faible risque (<20%)
+→ FastingBloodSugar et HbA1c sont les principaux discriminants entre communautés
+→ Louvain stable sur 5 runs : algorithme fiable pour ce graphe
