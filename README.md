@@ -3,7 +3,7 @@
 Projet réalisé dans le cadre du module **Graphes et OpenData** — Licence MIAGE, Université Paris Nanterre (2025–2026).
  
 **Auteurs :** Kenza CHANAZ & Fatoumata DEMBELE  
-
+**Application interactive :** [https://diabgraphe.streamlit.app/](https://diabgraphe.streamlit.app/)
  
 ---
  
@@ -62,7 +62,6 @@ Projet/
 │   ├── similarite_matrix.npy
 │   ├── rapport_communautes.txt
 │   └── visualisation.png
-```
 ```
  
 ---
